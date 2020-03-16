@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@d893cfacc335696c7183943eab8165100c3a6e1c/dist/aframe-master.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras/dist/aframe-extras.min.js"></script>
+
+    <script>
+      AFRAME.registerComponent('modify-materials', {
+        init: function () {
+          // Wait for model to load.
+          this.el.addEventListener('model-loaded', () => {
+            // Grab the mesh / scene.
+            const obj = this.el.getObject3D('mesh');
+            console.log(obj.material, "ryat");
+          
+            // Go over the submeshes and modify materials we want.
+            obj.traverse(node => { 
+                if (node.material.length > 0)
+                {
+                  node.material.forEach(element => {
+                  console.log("m", element.side);
+                  element.side = 2;
+                });
+                }
+       
+              // }
+            });
+          });
+        }
+      });
+    </script>
+  
+  </head>
+  <body style="background-color: #000">
+
+
+    <a-scene>
+<!-- <a-scene color-space="sRGB" renderer="gammaOutput: true, physicallyCorrectLights: true"> -->
+      <a-assets >
+        <a-asset-item id="shelk-obj" src="models/shelk2.obj"></a-asset-item>
+        <a-asset-item id="shelk-mtl" src="models/shelk2.mtl"></a-asset-item>
+        <img id="sky" src="sky1.png">
+       
+      </a-assets>
+
+  
+      <!-- TONNEL -->
+      <!-- <a-entity id="ton" gltf-model="#tonnel" scale="0.8 0.8 0.8" position = "0 0 80" >
+
+
+      
+
+      </a-entity> -->
+
+      <a-obj-model src="#shelk-obj" mtl="#shelk-mtl" scale="2 2 2" modify-materials></a-obj-model>
+
+ 
+
+        <!-- LIGHTS -->
+        <a-entity light="type: ambient; color: #4f6487;" ></a-entity>
+        <a-entity light="type: directional; color: #4f6487; intensity: 1" position="-0.5 2 1"></a-entity>
+        <a-light type="point" color="#94c6ff" distance="120" position="0 1 -6" intensity="0" animation="property: light.intensity; from: 0; to: 1; delay: 500; dur: 500" ></a-light>
+        <a-light type="point" color="#94c6ff" distance="120" position="0 1 -80" intensity="0" animation="property: light.intensity; from: 0; to: 1; delay: 500; dur: 500" ></a-light>
+        
+
+
+       <!-- BACKGROUND  -->
+       <a-sky src="#sky"></a-sky> 
+
+
+
+      <!-- CAMERA -->
+      <a-entity id="cameraRig" movement-controls>
+          <a-entity id="#head" camera look-controls position="0 1.8 0" cursor="rayOrigin: mouse; object: .interractible" ></a-entity>
+        <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: highPoly; color: #94c6ff"></a-entity>
+        <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: highPoly; color: #94c6ff" laser-controls line="color: red; opacity: 0.75" raycaster="objects: .interractible"></a-entity>
+
+        <a-entity id="choseHand"></a-entity>
+      </a-entity>
+
+
+      
+
+    </a-scene>
+  </body>
+</html>
