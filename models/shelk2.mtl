@@ -52,7 +52,7 @@ Ke 0.0 0.0 0.0
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Шелк_вверанда\\__auto_.jpg
+map_Kd Шелк_вверанда\\auto.jpg
 
 newmtl _.001
 Ns 0.000000
