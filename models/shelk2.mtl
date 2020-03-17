@@ -1,5 +1,5 @@
 # Blender MTL File: 'None'
-# Material Count: 17
+# Material Count: 16
 
 newmtl Brick_05.001
 Ns 0.000000
@@ -72,16 +72,6 @@ Ke 0.0 0.0 0.0
 Ni 1.450000
 d 0.291109
 illum 9
-
-newmtl _12.001
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.819608 0.807843 0.721569
-Ks 0.330000 0.330000 0.330000
-Ke 0.0 0.0 0.0
-Ni 1.450000
-d 1.000000
-illum 2
 
 newmtl _13.001
 Ns 0.000000
